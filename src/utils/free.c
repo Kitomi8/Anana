@@ -26,3 +26,20 @@ void    free_tab(char **tab)
     }
     free(tab);
 }
+
+
+void	free_tokens(t_token *tokens)
+{
+	t_token	*tmp;
+
+	while (tokens)
+	{
+		tmp = tokens->next;
+
+		if (tokens->content)
+			free(tokens->content);
+		free(tokens);
+		tokens = tmp;
+	}
+}
+
