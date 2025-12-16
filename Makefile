@@ -1,5 +1,5 @@
 NAME        = minishell
-CC          = cc
+CC          = cc -g
 CFLAGS      = -Wall -Wextra -Werror
 
 SRC_DIR     = src
@@ -10,7 +10,7 @@ LIBFT_DIR   = libft
 SRCS_FILES  = main.c \
               executor/executor.c \
               executor/path_finder.c  \
-			  executor/convertor.c \
+			  executor/converter.c \
               signals/signals.c \
 			  env/env_utils.c \
 			  env/env.c \

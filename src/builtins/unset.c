@@ -6,7 +6,7 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 09:14:24 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2025/12/12 11:15:05 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2025/12/16 14:26:07 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ static void	delete_env_node(t_env **env, char *key)
 
 int	ft_unset(t_env **env, char **args)
 {
-	int i;
+	int	i;
+
 	if (!args[1])
 		return (0);
-
 	i = 1;
 	while (args[i])
 	{

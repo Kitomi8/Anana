@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convertor.c                                        :+:      :+:    :+:   */
+/*   converter.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 09:43:38 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2025/12/16 09:50:56 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2025/12/16 13:53:03 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	count_token_list(t_token *tokens)
 	return (count);
 }
 
-
 char	**token_to_tab(t_token *tokens)
 {
 	char	**args;
@@ -47,6 +46,6 @@ char	**token_to_tab(t_token *tokens)
 		i++;
 		tmp = tmp->next;
 	}
-	args[i] = NULL; 
+	args[i] = NULL;
 	return (args);
 }

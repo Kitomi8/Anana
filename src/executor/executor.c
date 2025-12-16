@@ -6,13 +6,13 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 19:46:17 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2025/11/29 16:35:36 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2025/12/16 13:51:00 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exec_child_process(pid_t pid, char *path, char **args,  char **envp)
+static void	exec_process(pid_t pid, char *path, char **args, char **envp)
 {
 	if (pid == 0)
 	{
@@ -30,6 +30,7 @@ void	exec_child_process(pid_t pid, char *path, char **args,  char **envp)
 		free(path);
 	}
 }
+
 void	execute_simple_cmd(char **args, char **envp)
 {
 	pid_t	pid;
@@ -49,5 +50,5 @@ void	execute_simple_cmd(char **args, char **envp)
 		perror("fork");
 		return ;
 	}
-	exec_child_process(pid, path, args, envp);
+	exec_process(pid, path, args, envp);
 }

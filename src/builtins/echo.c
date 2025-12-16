@@ -6,7 +6,7 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 09:14:43 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2025/12/12 10:52:17 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2025/12/16 14:19:45 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,13 @@ int	ft_echo(char **args)
 	int	i;
 	int	no_newline;
 
-	i = 0;
+	i = 1;
 	no_newline = 0;
-	while (args[i])
+	while (args[i] && is_n_flag(args[i]))
 	{
-		if (args[i] && is_n_flag(args[i]))
-			no_newline = 1;
+		no_newline = 1;
 		i++;
 	}
-	i = 1;
 	while (args[i])
 	{
 		ft_putstr_fd(args[i], 1);

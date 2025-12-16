@@ -6,7 +6,7 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 09:08:33 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2025/12/12 11:00:08 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2025/12/16 14:23:24 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ char	*remove_quotes(char *str)
 	}
 	return (str);
 }
+
 void	ft_expand(t_token *token_list, t_env *env)
 {
 	t_token	*curr;
