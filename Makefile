@@ -10,6 +10,7 @@ LIBFT_DIR   = libft
 SRCS_FILES  = main.c \
               executor/executor.c \
               executor/path_finder.c  \
+			  executor/convertor.c \
               signals/signals.c \
 			  env/env_utils.c \
 			  env/env.c \

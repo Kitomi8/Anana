@@ -6,7 +6,7 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/12 11:11:12 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2025/12/12 11:11:13 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2025/12/16 10:21:10 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void    free_tab(char **tab)
     }
     free(tab);
 }
-
 
 void	free_tokens(t_token *tokens)
 {

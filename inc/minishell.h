@@ -67,5 +67,8 @@ int     ft_strcmp(char *s1, char *s2);
 char    *remove_quotes(char *str);
 void ft_expand(t_token *token_list, t_env *env);
 int    ft_echo(char **args);
+int count_token_list(t_token *tokens);
+char **token_to_tab(t_token *tokens);
+void	free_tokens(t_token *tokens);
 
 #endif
