@@ -1,4 +1,4 @@
-
+ju
 
 #include "minishell.h"
 
@@ -123,3 +123,6 @@ void	ft_expand(t_token *tokens, t_env *env)
 		curr = curr->next;
 	}
 }
+
+
+v
