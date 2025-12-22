@@ -1,5 +1,5 @@
 NAME        = minishell
-CC          = cc -g
+CC          = cc
 CFLAGS      = -Wall -Wextra -Werror
 
 SRC_DIR     = src
@@ -14,12 +14,12 @@ SRCS_FILES  = main.c \
               signals/signals.c \
 			  env/env_utils.c \
 			  env/env.c \
-			  builtins/env.c \
-			  builtins/export.c \
-			  builtins/unset.c \
-			  builtins/cd.c \
-			  builtins/echo.c \
-			  builtins/pwd.c \
+			  builtins/ft_env.c \
+			  builtins/ft_export.c \
+			  builtins/ft_unset.c \
+			  builtins/ft_cd.c \
+			  builtins/ft_echo.c \
+			  builtins/ft_pwd.c \
               utils/free.c \
 			  utils/utils.c \
 			  lexer/lexer.c \
