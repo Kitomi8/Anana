@@ -1,35 +1,23 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   expander.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/09 09:08:33 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2025/12/22 15:16:26 by rtoky-fa         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+
 
 #include "minishell.h"
 
-static char	*get_var_value(char *var_name, t_env *env)
+static char	*get_var_val(char *key, t_env *env)
 {
-	char	*value;
+	char	*val;
 
-	if (ft_strcmp(var_name, "?") == 0)
-	{
-		return (ft_itoa(g_signal)); 
-	}
-	value = get_env_value(env, var_name);
-	if (value)
-		return (ft_strdup(value));
+	if (ft_strcmp(key, "?") == 0)
+		return (ft_itoa(g_signal));
+	val = get_env_value(env, key);
+	if (val)
+		return (ft_strdup(val));
 	return (ft_strdup(""));
 }
 
-static char	*extract_var_name(char *str, int *i)
+static char	*extract_key(char *str, int *i)
 {
 	int		start;
-	char	*var_name;
+	char	*key;
 
 	(*i)++;
 	if (str[*i] == '?')
@@ -40,48 +28,62 @@ static char	*extract_var_name(char *str, int *i)
 	start = *i;
 	while (str[*i] && (ft_isalnum(str[*i]) || str[*i] == '_'))
 		(*i)++;
-	var_name = ft_substr(str, start, *i - start);
-	return (var_name);
+	key = ft_substr(str, start, *i - start);
+	return (key);
+}
+
+static void	append_char(char **s, char c)
+{
+	char	str[2];
+	char	*tmp;
+
+	str[0] = c;
+	str[1] = 0;
+	tmp = ft_strjoin(*s, str);
+	free(*s);
+	*s = tmp;
+}
+
+static void	process_var(char *str, int *i, char **res, t_env *env)
+{
+	char	*key;
+	char	*val;
+	char	*tmp;
+
+	key = extract_key(str, i);
+	val = get_var_val(key, env);
+	tmp = ft_strjoin(*res, val);
+	free(*res);
+	*res = tmp;
+	free(key);
+	free(val);
 }
 
 static char	*expand_string(char *str, t_env *env)
 {
-	char	*new_str;
-	char	*tmp;
-	char	*var_name;
-	char	*var_value;
+	char	*res;
 	int		i;
-	// int		start;
-	int		in_s_quote;
+	int		in_sq;
 
-	new_str = ft_strdup("");
 	i = 0;
-	in_s_quote = 0;
+	in_sq = 0;
+	res = ft_strdup("");
 	while (str[i])
 	{
 		if (str[i] == '\'')
-			in_s_quote = !in_s_quote;
-		else if (str[i] == '\"' && !in_s_quote)
-			;
-
-		if (str[i] == '$' && !in_s_quote && (ft_isalnum(str[i + 1]) || str[i + 1] == '_' || str[i + 1] == '?'))
+			in_sq = !in_sq;
+		if (str[i] == '$' && !in_sq && (ft_isalnum(str[i + 1])
+				|| str[i + 1] == '_' || str[i + 1] == '?'))
 		{
-			var_name = extract_var_name(str, &i);
-			var_value = get_var_value(var_name, env);
-			tmp = ft_strjoin(new_str, var_value);
-			free(new_str);
-			free(var_name);
-			free(var_value);
-			new_str = tmp;
-			continue ;
-		} 
-		char c[2] = {str[i], 0};
-		tmp = ft_strjoin(new_str, c);
-		free(new_str);
-		new_str = tmp;
-		i++;
+			process_var(str, &i, &res, env);
+		}
+		else
+		{
+			append_char(&res, str[i]);
+			i++;
+		}
 	}
-	return (new_str);
+	return (res);
 }
 
 char	*remove_quotes(char *str)
@@ -94,8 +96,8 @@ char	*remove_quotes(char *str)
 	len = ft_strlen(str);
 	if (len < 2)
 		return (str);
-	if ((str[0] == '\'' && str[len - 1] == '\'') || (str[0] == '\"' && str[len
-			- 1] == '\"'))
+	if ((str[0] == '\'' && str[len - 1] == '\'')
+		|| (str[0] == '\"' && str[len - 1] == '\"'))
 	{
 		new_str = ft_substr(str, 1, len - 2);
 		free(str);
@@ -103,23 +105,21 @@ char	*remove_quotes(char *str)
 	}
 	return (str);
 }
-void	ft_expand(t_token *token_list, t_env *env)
+
+void	ft_expand(t_token *tokens, t_env *env)
 {
 	t_token	*curr;
-	char	*expanded;
+	char	*tmp;
 
-	curr = token_list;
+	curr = tokens;
 	while (curr)
 	{
 		if (curr->type == WORD)
 		{
-		
-			expanded = expand_string(curr->content, env);
+			tmp = expand_string(curr->content, env);
 			free(curr->content);
-			
-			curr->content = remove_quotes(expanded);
+			curr->content = remove_quotes(tmp);
 		}
 		curr = curr->next;
 	}
 }
-
