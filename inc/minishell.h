@@ -6,7 +6,7 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 14:24:46 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2025/12/16 14:25:22 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2025/12/24 17:29:44 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 
 typedef struct s_env
 {
-	char *key;   // Ex: "HOME"
-	char *value; // Ex: "/home/rtoky-fa"
+	char *key;
+	char *value; 
 	struct s_env	*next;
 }					t_env;
 
@@ -78,5 +78,6 @@ int					ft_echo(char **args);
 int					count_token_list(t_token *tokens);
 char				**token_to_tab(t_token *tokens);
 void				free_tokens(t_token *tokens);
+int	ft_exit(char **args, t_env **env);
 
 #endif

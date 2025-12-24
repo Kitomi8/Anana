@@ -6,7 +6,7 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 21:32:44 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2025/12/16 13:53:38 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2025/12/24 20:32:16 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int	main(int ac, char **av, char **envp)
 					ft_pwd();
 				else if (ft_strcmp(args[0], "echo") == 0)
 					ft_echo(args);
+				else if (ft_strcmp(args[0], "exit"))
+					ft_exit(args[0], env);
 				else
 					execute_simple_cmd(args, envp);
 				printf("------------------------------------------------\n");

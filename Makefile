@@ -20,6 +20,7 @@ SRCS_FILES  = main.c \
 			  builtins/ft_cd.c \
 			  builtins/ft_echo.c \
 			  builtins/ft_pwd.c \
+			  builtins/ft_exit.c \
               utils/free.c \
 			  utils/utils.c \
 			  lexer/lexer.c \
