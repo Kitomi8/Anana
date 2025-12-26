@@ -6,7 +6,7 @@
 /*   By: rtoky-fa <rtoky-fa@student.42antananari    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 14:24:46 by rtoky-fa          #+#    #+#             */
-/*   Updated: 2025/12/24 17:29:44 by rtoky-fa         ###   ########.fr       */
+/*   Updated: 2025/12/26 09:06:40 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ typedef enum e_token_type
 {
 	WORD,
 	PIPE,
+	INPUT,
+	trunc,
+	APPEND,
+	HEREDOC,
 }					t_token_type;
 
 typedef enum e_state
