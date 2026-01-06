@@ -6,7 +6,7 @@
 /*   By: landriam <landriam@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 17:00:24 by landriam          #+#    #+#             */
-/*   Updated: 2025/12/26 16:42:07 by landriam         ###   ########.fr       */
+/*   Updated: 2026/01/06 09:00:56 by landriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,11 @@ static int	get_input(t_store *store)
 		return (free(input), exit_status(store->var, 1), 1);
 	if (!input)
 		return (ft_putstr_fd("exit\n", 2), -1);
-	add_history(input);
+	if (input[0])
+		add_history(input);
 	i = space_remove(input);
 	if (input[i] == '\0')
-		return (free(input), exit_status(store->var, 0), 1);
+		return (free(input), 1);
 	store->node = parse_input(input + i, &store->doc, store->var);
 	if (!store->node)
 		return (clear_here_doc(&store->doc), free(input), 1);

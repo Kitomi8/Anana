@@ -6,7 +6,7 @@
 /*   By: landriam <landriam@student.42antananarivo  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/10 06:12:20 by landriam          #+#    #+#             */
-/*   Updated: 2025/12/24 09:45:15 by landriam         ###   ########.fr       */
+/*   Updated: 2026/01/06 12:05:24 by rtoky-fa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,23 @@ static t_list	*ft_listlast(t_list *lst)
 void	exit_status(t_list *var, int nbr)
 {
 	char	*str;
+	char	*res;
+	t_list	*tmp;
 
 	str = ft_itoa(nbr);
 	if (!str)
 		return ;
-	assign_variable(var, "?", str);
+	tmp = var;
+	if (!assign_variable(var, "?", str))
+	{
+		res = ft_strjoin("?=", "0");
+		if (!res)
+		{
+			free(str);
+			return ;
+		}
+		ft_listadd_back(&tmp, ft_listnew(res, 0));
+	}
 	free(str);
 }
 

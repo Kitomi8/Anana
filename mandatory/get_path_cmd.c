@@ -6,7 +6,7 @@
 /*   By: landriam <landriam@student.42antanana      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 13:39:10 by landriam          #+#    #+#             */
-/*   Updated: 2025/12/30 09:45:15 by landriam         ###   ########.fr       */
+/*   Updated: 2026/01/05 18:26:02 by landriam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,9 @@ t_data	get_path(char *str, t_list *var)
 
 	if (!ft_strcmp("..", str) || !ft_strcmp("", str))
 	{
-		ft_putstr_fd("minishell: ..: command not found\n", 2);
-		return ((t_data){127, NULL});
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(str, 2);
+		return (ft_putstr_fd(": command not found\n", 2), (t_data){127, NULL});
 	}
 	if (ft_strchr(str, '/'))
 	{
